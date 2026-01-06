@@ -32,6 +32,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -87,6 +88,7 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
                 .padding(bottom = 16.dp)
                 .fillMaxWidth()
                 .focusRequester(capitalFocusRequester)
+                .testTag("campoCapital")
         )
 
         OutlinedTextField(
@@ -101,6 +103,7 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
                 .padding(bottom = 16.dp)
                 .fillMaxWidth()
                 .focusRequester(taxaFocusRequester)
+                .testTag("campoTaxa")
         )
 
         OutlinedTextField(
@@ -114,6 +117,7 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(tempoFocusRequester)
+                .testTag("campoTempo")
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -134,7 +138,9 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
                         tempo = tempo.toIntOrNull() ?: 0
                     )
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag("botaoCalcular"),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF009688)
@@ -150,7 +156,8 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
                     tempo = ""
                     capitalFocusRequester.requestFocus()
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFFF5722)
@@ -250,7 +257,9 @@ fun JurosScreen(viewModel: JurosViewModel = JurosViewModel()) {
                                 .format(viewModel.montante ?: 0.0)
                         }",
                         style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("textoMontante"),
                         textAlign = TextAlign.End,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF009688)
